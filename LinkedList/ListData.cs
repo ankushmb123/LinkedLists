@@ -29,23 +29,34 @@ namespace LinkedList
                 temp.next = node;
             }
         }
-        public void Remove_Last()
+        public void InsertAtPosition(int position, int data)
         {
+            int count = 0;
+            Node node = new Node(data);
+            count++;
             if (head == null)
             {
-                Console.WriteLine("List is Empty");
-
+                head = node;
             }
-            else
+
+
+            if (position == 0)
             {
-                Node temp = head;
-                while (temp.next.next != null)
-                {
-                    temp = temp.next;
-                }
-                temp.next = null;
-
+                node.next = head;
+                head = node;
+                return;
             }
+            Node prev = null;
+            Node current = head;
+
+            while (current != null && count <= position)
+            {
+                prev = current;
+                current = current.next;
+                count++;
+            }
+            node.next = prev.next;
+            prev.next = node;
         }
         public void Display()
         {
